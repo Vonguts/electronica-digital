@@ -12,13 +12,13 @@
 
 void main() {
    //Variables
-   //Temperatura de control (0-100 °C)
+   //Temperatura de control (0-100 Â°C)
    float tempc = 0;
    int16 q_tempc = 0;
    //Temperatura medida
    float tempm = 0;
    int16 q_tempm = 0;
-   int16 bits25 = (0.25*1024)/5;   //El sensor LM35 entre 0.25V a 25°C
+   int16 bits25 = (0.25*1024)/5;   //El sensor LM35 entre 0.25V a 25Â°C
    //Nivel de luminosidad
    int16 max_q_ni = 1023;
    int16 q_ni = 0;
@@ -29,11 +29,11 @@ void main() {
    //Puertos PWM
    set_tris_c(0xF9);
    
-   //Configuración ADC
+   //ConfiguraciÃ³n ADC
    setup_adc_ports(0x07);           //Utiliza los canales AN0, AN1 y AN2
    setup_adc(ADC_CLOCK_INTERNAL);
    
-   //Configuración PWM
+   //ConfiguraciÃ³n PWM
    setup_timer_2(T2_DIV_BY_1, 249, 1);
    setup_ccp1(CCP_PWM);
    setup_ccp2(CCP_PWM);
@@ -49,7 +49,7 @@ void main() {
       set_adc_channel(0);
       delay_us(20);
       q_tempc = read_adc();
-      tempc = 0.0976*q_tempc;
+      tempc = 0.0978*q_tempc;
       
       //Lectura de la temperatura medida
       set_adc_channel(1);
@@ -57,7 +57,7 @@ void main() {
       q_tempm = read_adc();
       tempm = (25*q_tempm)/bits25;
       
-      //Visualización de las dos temperaturas
+      //VisualizaciÃ³n de las dos temperaturas
       printf(lcd_putc, "\fT.C = %.0f oC", tempc);
       printf(lcd_putc, "\nT. = %03.2f oC", tempm);
       delay_ms(100);
